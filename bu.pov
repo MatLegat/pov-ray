@@ -89,30 +89,41 @@ object {
 #declare mesa =
   union {
     box {
-      <9, 1.1,-5.7>,
-      <7, 1.0,-3.5>
+      <9, 0.3,-5.7>,
+      <7, 0.2,-3.5>
       pigment {
         color rgb White
       }
     }
     box {
-      <7.92, 0,-4.68>,
-      <8.08, 1,-4.52>
+      <7.92, -10,-4.68>,
+      <8.08, 0.2,-4.52>
       pigment {
         color rgb <0.05, 0.05, 0.05>
       }
     }
     box {
-      <7.92, 0.0,-5.68>,
-      <8.08, 0.1,-3.52>
+      <-0.08, 0.0, 1>
+      < 0.08, 0.1,-1>
       pigment {
         color rgb <0.05, 0.05, 0.05>
       }
-      // rotate y*20
+      rotate y*35
+      translate <8, -1, -4.6>
+    }
+    box {
+      <-0.08, 0.0, 1>
+      < 0.08, 0.1,-1>
+      pigment {
+        color rgb <0.05, 0.05, 0.05>
+      }
+      rotate y*-35
+      translate <8, -1, -4.6>
     }
   }
 object {
   mesa
+  translate <3, 0, 0>
 }
 
 // Coluna salmão
