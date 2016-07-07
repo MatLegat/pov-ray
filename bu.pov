@@ -8,19 +8,34 @@
 
 camera {
   location <0, 2.7, -5>
-  look_at  <13, 1.3,  2>
+  look_at  <13, 1.3,  2.5>
 }
 
 background { color Black }
 
 // Fonte de Luz das janelas
-light_source { <20, 4.2,  18.5> color rgb <0.3, 0.3, 0.3>}
-light_source { <10, 4.2,  18.5> color rgb <0.3, 0.3, 0.3>}
-light_source { <30, 4.2,  18.5> color rgb <0.3, 0.3, 0.3>}
-light_source { <45, 4.2,  18.5> color rgb <0.3, 0.3, 0.3>}
-light_source { <45.1, 4.2,  9 > color rgb <0.3, 0.3, 0.3>}
-light_source { <45.1, 4.2,  -1> color rgb <0.3, 0.3, 0.3>}
-light_source { <45.1, 4.2, -11> color rgb <0.3, 0.3, 0.3>}
+// // FAST:
+// #declare I = 0;
+// #while (I <= 60)
+//   light_source { <I, 4.2,  18.5> color rgb <0.3, 0.3, 0.3>}
+//   #declare I = I + 10;
+// #end
+// #declare I = -20;
+// #while (I <= 20)
+//   light_source { <45.1, 4.2,  I > color rgb <0.17, 0.17, 0.17>}
+//   #declare I = I + 10;
+// #end
+// REALISTC:
+#declare I = 0;
+#while (I <= 60)
+  light_source { <I, 4.2,  18.5> color rgb <0.007, 0.007, 0.007>}
+  #declare I = I + 0.2;
+#end
+#declare I = -20;
+#while (I <= 20)
+  light_source { <45.1, 4.2,  I > color rgb <0.004, 0.004, 0.004>}
+  #declare I = I + 0.2;
+#end
 
 
 
@@ -45,16 +60,16 @@ plane {
 plane {
   <0, 0, 1>, -1
   texture{
-    pigment{ color rgb <0.6, 0.8, 0.7>}
-    finish { phong 0.5}
+    pigment{ color rgb <0.65, 0.9, 0.8>}
+    finish { phong 0.7}
   }
   translate <0,0,20>
 }
 plane {
   <1, 0, 0>, -1
   texture{
-    pigment{ color rgb <0.6, 0.8, 0.7>}
-    finish { phong 0.5}
+    pigment{ color rgb <0.4, 0.65, 0.55>}
+    finish { phong 0.4}
   }
   translate <48,0,0>
 }
@@ -65,7 +80,7 @@ plane {
     <7.92, -10,-4.68>,
     <8.08, 10,-4.52>
     pigment {
-      color rgb Gray
+      color Gray
     }
   }
 // Hastes horizontais
@@ -80,6 +95,18 @@ object {
   translate <7, -7, 23.6>
   rotate z*90
   translate <30, -11, 0>
+}
+object {
+  haste
+  translate <7, -7, 23.6>
+  rotate z*90
+  translate <10, -14, 0>
+}
+object {
+  haste
+  translate <7, -7, 23.6>
+  rotate z*90
+  translate <30, -14, 0>
 }
 // Parede do fundo
 object {
@@ -107,160 +134,61 @@ object {
   translate <0, 18.4, -10>
 }
 // Hastes verticais
-object {
-  haste
-  translate <7, -7, 23.6>
-  rotate z*90
-  translate <10, -14, 0>
-}
-object {
-  haste
-  translate <7, -7, 23.6>
-  rotate z*90
-  translate <30, -14, 0>
-}
-object {
-  haste
-  translate <5, 0, 23.6>
-}
-object {
-  haste
-  translate <7, 0, 23.6>
-}
-object {
-  haste
-  translate <9, 0, 23.6>
-}
-object {
-  haste
-  translate <11, 0, 23.6>
-}
-object {
-  haste
-  translate <13, 0, 23.6>
-}
-object {
-  haste
-  translate <15, 0, 23.6>
-}
-object {
-  haste
-  translate <17, 0, 23.6>
-}
-object {
-  haste
-  translate <19, 0, 23.6>
-}
-object {
-  haste
-  translate <21, 0, 23.6>
-}object {
-  haste
-  translate <23, 0, 23.6>
-}
-object {
-  haste
-  translate <25, 0, 23.6>
-}
-object {
-  haste
-  translate <27, 0, 23.6>
-}
-object {
-  haste
-  translate <29, 0, 23.6>
-}
-object {
-  haste
-  translate <31, 0, 23.6>
-}
-object {
-  haste
-  translate <33, 0, 23.6>
-}
-object {
-  haste
-  translate <35, 0, 23.6>
-}
-object {
-  haste
-  translate <37, 0, 23.6>
-}
+#declare I = 5;
+#while (I <= 39)
+  object {
+    haste
+    translate <I, 0, 23.6>
+  }
+  #declare I = I + 2;
+#end
 // Parede do fundo
-object {
-  haste
-  translate <39, 0, 20>
-}
-object {
-  haste
-  translate <39, 0, 18>
-}
-object {
-  haste
-  translate <39, 0, 16>
-}
-object {
-  haste
-  translate <39, 0, 14>
-}
-object {
-  haste
-  translate <39, 0, 12>
-}
-object {
-  haste
-  translate <39, 0, 10>
-}
-object {
-  haste
-  translate <39, 0, 8>
-}
-object {
-  haste
-  translate <39, 0, 6>
-}
-object {
-  haste
-  translate <39, 0, 4>
-}
-object {
-  haste
-  translate <39, 0, 2>
-}
-object {
-  haste
-  translate <39, 0, 0>
-}
-object {
-  haste
-  translate <39, 0, -2>
-}
-object {
-  haste
-  translate <39, 0, -4>
-}
+#declare I = -4;
+#while (I <= 20)
+  object {
+    haste
+    translate <39, 0, I>
+  }
+  #declare I = I + 2;
+#end
 
 // Estante amarela
 #declare estante =
   union {
     box {
-      <15,  3,-4.5>,
-      <45,-20,-3.5>
+      <15,  3,-4.45>,
+      <43,-20,-3.55>
       pigment {
-        color rgb Yellow
+        color Yellow
       }
     }
     box {
-      <14.9, 2.7,-4.5>,
-      <15, 1.2,-3.5>
+      <14.9, 2.6,-4.4>,
+      <15, 1.4,-3.6>
       pigment {
-        color rgb Gray
+        color Gray
       }
-    }box {
-      <14.8, 2.7,-4.5>,
-      <15, 2.4,-3.5>
+    }
+    box {
+      <14.85, 1.7,-3.98>,
+      <15,   2.6,-3.65>
       pigment {
-        color rgb Blue
+        color White
+      }
+    }
+    box {
+      <14.85, 1.7,-3.98>,
+      <15,   2.6,-3.65>
+      pigment {
+        color White
+      }
+      translate <0, 0, -0.37>
+    }
+    box {
+      <14.8, 2.6,-4.4>,
+      <15, 2.4,-3.6>
+      pigment {
+        color Blue
       }
     }
   }
@@ -269,17 +197,17 @@ object {
 }
 object {
   estante
-  translate <0, 0, -2.3>
+  translate <0, 0, -2>
 }
 
 // Mesa
 #declare mesa =
   union {
     box {
-      <9, 0.3,-5.7>,
-      <7, 0.2,-3.5>
+      <8.82, 0.3,-5.7>,
+      <7.18, 0.2,-3.5>
       pigment {
-        color rgb White
+        color White
       }
     }
     box {
@@ -295,7 +223,7 @@ object {
       pigment {
         color rgb <0.05, 0.05, 0.05>
       }
-      rotate y*35
+      rotate y*30
       translate <8, -1, -4.6>
     }
     box {
@@ -304,7 +232,7 @@ object {
       pigment {
         color rgb <0.05, 0.05, 0.05>
       }
-      rotate y*-35
+      rotate y*-30
       translate <8, -1, -4.6>
     }
   }
@@ -312,56 +240,60 @@ object {
 // Cadeira
 #declare cadeira =
   union {
-    box {
-      <7, -0.4,-4.4>,
-      <5.8,   -0.3,-3.6>
-      texture{
-        pigment{ color rgb Blue}
+    object {
+      Round_Box(
+        <6.7, -0.4,-4.4>,
+        <5.8, -0.3,-3.6>,
+        0.07,
+        0
+      )
+      texture {
+        pigment{ color Blue}
         // finish { phong 1}
       }
     }
     box {
-      <7.95, -10,-4.65>,
-      <8.05, -0.4,-4.55>
+      <7.98, -10,-4.62>,
+      <8.02, -0.4,-4.58>
       pigment {
         color rgb <0.05, 0.05, 0.05>
       }
-      translate <-1.1, 0, 0.25>
+      translate <-1.35, 0, 0.24>
     }
     box {
-      <7.95, -10,-4.65>,
-      <8.05, -0.4,-4.55>
+      <7.98, -10,-4.62>,
+      <8.02, -0.4,-4.58>
       pigment {
         color rgb <0.05, 0.05, 0.05>
       }
-      translate <-1.1, 0, 1>
+      translate <-1.35, 0, 0.975>
     }
     box {
-      <7.95, -10,-4.65>,
-      <8.05,  0.2,-4.55>
+      <7.98, -10,-4.62>,
+      <8.02,  0.2,-4.58>
       pigment {
         color rgb <0.05, 0.05, 0.05>
       }
-      translate <-2.2, 0, 0.25>
+      translate <-2.2, 0, 0.24>
     }
     box {
-      <7.95, -10,-4.65>,
-      <8.05,  0.2,-4.55>
+      <7.98, -10,-4.62>,
+      <8.02,  0.2,-4.58>
       pigment {
         color rgb <0.05, 0.05, 0.05>
       }
-      translate <-2.2, 0, 1>
+      translate <-2.2, 0, 0.975>
     }
     object {
       Round_Cylinder
        (<0,0,0>,<0,0.3001,0>,0.5,0.15,0)
       texture{
-        pigment{ color rgb Blue}
+        pigment{ color Blue}
         // finish { phong 1}
       }
-      scale <1, 0.5, 1>
+      scale <0.8, 0.3, 0.8>
       rotate <90, 90, 0>
-      translate <5.7, 0.25, -4>
+      translate <5.75, 0.25, -4>
     }
   }
 
@@ -373,120 +305,47 @@ object {
     }
     object {
       cadeira
-      translate <3.8, 0, 0>
+      translate <4, 0, 0>
     }
     object {
       cadeira
-      translate <3.8, 0, -1.2>
-    }
-    object {
-      cadeira
-      translate <-5.2, 0, 4>
-      rotate y*180
-      translate <13, 0, -4>
+      translate <4, 0, -1.2>
     }
     object {
       cadeira
       translate <-5.2, 0, 4>
       rotate y*180
-      translate <13, 0, -5.2>
+      translate <12.8, 0, -4>
+    }
+    object {
+      cadeira
+      translate <-5.2, 0, 4>
+      rotate y*180
+      translate <12.8, 0, -5.2>
     }
   }
 
-// Fila 1
 object {
   carteira
 }
-object {
-  carteira
-  translate <0, 0, 05>
-}
-object {
-  carteira
-  translate <0, 0, 10>
-}
-object {
-  carteira
-  translate <0, 0, 15>
-}
-object {
-  carteira
-  translate <0, 0, 20>
-}
-// Fila 2
-object {
-  carteira
-  translate <6.5, 0, 05>
-}
-object {
-  carteira
-  translate <6.5, 0, 10>
-}
-object {
-  carteira
-  translate <6.5, 0, 15>
-}
-object {
-  carteira
-  translate <6.5, 0, 20>
-}
-// Fila 3
-object {
-  carteira
-  translate <13, 0, 05>
-}
-object {
-  carteira
-  translate <13, 0, 10>
-}
-object {
-  carteira
-  translate <13, 0, 15>
-}
-object {
-  carteira
-  translate <13, 0, 20>
-}
-// Fila 4
-object {
-  carteira
-  translate <19.5, 0, 05>
-}
-object {
-  carteira
-  translate <19.5, 0, 10>
-}
-object {
-  carteira
-  translate <19.5, 0, 15>
-}
-object {
-  carteira
-  translate <19.5, 0, 20>
-}
-// Fila 5
-object {
-  carteira
-  translate <26, 0, 05>
-}
-object {
-  carteira
-  translate <26, 0, 10>
-}
-object {
-  carteira
-  translate <26, 0, 15>
-}
-object {
-  carteira
-  translate <26, 0, 20>
-}
+#declare I = 0;
+#while (I <= 26)
+  #declare J = 4.5;
+  #while (J <= 20)
+    object {
+      carteira
+      translate <I, 0, J>
+    }
+    #declare J = J + 4.8;
+  #end
+  #declare I = I + 5;
+#end
 
-// Coluna salmão
+// Coluna laranja
 box {
   <55,10,16.5>,
   <46,-10,30>
   pigment {
-    color rgb <0.8, 0.45, 0.45>
+    color rgb <0.8, 0.55, 0.45>
   }
 }
