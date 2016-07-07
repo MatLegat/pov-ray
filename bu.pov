@@ -5,6 +5,7 @@
 #include "textures.inc"
 #include "shapes.inc"
 
+#declare Realistic = yes;
 
 camera {
   location <0, 2.7, -5>
@@ -14,30 +15,184 @@ camera {
 background { color Black }
 
 // Fonte de Luz das janelas
-// // FAST:
-// #declare I = 0;
-// #while (I <= 60)
-//   light_source { <I, 4.2,  18.5> color rgb <0.3, 0.3, 0.3>}
-//   #declare I = I + 10;
-// #end
-// #declare I = -20;
-// #while (I <= 20)
-//   light_source { <45.1, 4.2,  I > color rgb <0.17, 0.17, 0.17>}
-//   #declare I = I + 10;
-// #end
-// REALISTC:
+#if (Realistic)
+  #declare I = 0;
+  #while (I <= 60)
+    light_source { <I, 4.2,  18.5> color rgb <0.007, 0.007, 0.007>}
+    #declare I = I + 0.2;
+  #end
+  #declare I = -20;
+  #while (I <= 20)
+    light_source { <45.1, 4.2,  I > color rgb <0.004, 0.004, 0.004>}
+    #declare I = I + 0.2;
+  #end
+#else
+  #declare I = 0;
+  #while (I <= 60)
+    light_source { <I, 4.2, 18.5> color rgb <0.3, 0.3, 0.3>}
+    #declare I = I + 10;
+  #end
+  #declare I = -20;
+  #while (I <= 20)
+    light_source { <45.1, 4.2, I> color rgb <0.17, 0.17, 0.17>}
+    #declare I = I + 10;
+  #end
+#end
+// Lâmpadas
+#declare lampada =
+  union {
+    prism{ 0.00, 1.00, 4
+       <-1.00, 0.00>,
+       < 1.00, 0.00>,
+       < 0.00, 2.00>,
+       <-1.00, 0.00>
+      texture{
+        pigment{color White}
+        finish {ambient 0.15
+                diffuse 0.85}
+      }
+      scale <0.1, 2, 0.1>
+      rotate <90, 0, 180>
+      translate <6, 4.9, 0>
+    }
+    box {
+      <0, 0, 0>
+      <0.01, 0.15, 2>
+      rotate z*-25
+      translate <5.82, 4.75, 0>
+      texture{
+        pigment{color White}
+        finish { Metallic_Finish }
+      }
+    }
+    box {
+      <0, 0, 0>
+      <0.01, 0.15, 2>
+      rotate z*25
+      translate <6.15, 4.75, 0>
+      texture{
+        pigment{color White}
+        finish { Metallic_Finish }
+      }
+    }
+    box {
+      <0, 0, 0>
+      <0.01, 0.15, 2>
+      rotate z*90
+      scale x*1.4
+      translate <6.1, 4.87, 0>
+      texture{
+        pigment{color White}
+        finish { Metallic_Finish }
+      }
+    }
+    cylinder {
+      <0, 0, 0.05>
+      <0, 0, 1.95>
+      0.03
+      translate <6.05, 4.82, 0>
+      texture{
+        pigment{color White}
+        finish { 
+          phong 1 
+          ambient 0.75
+        }
+      }
+    }
+    cylinder {
+      <0, 0, 0.05>
+      <0, 0, 1.95>
+      0.03
+      translate <5.95, 4.82, 0>
+      texture{
+        pigment{color White}
+        finish { 
+          phong 1 
+          ambient 0.75
+        }
+      }
+    }
+    #if (Realistic)
+      #declare I = 0.1;
+      #while (I <= 1.9)
+        light_source { <6, 4.78, I> color rgb <0.0007, 0.0007, 0.0007>}
+        #declare I = I + 0.2;
+      #end
+    #else
+      // light_source { <6, 4.78, 0.1> color rgb <0.008, 0.008, 0.008>}
+      // light_source { <6, 4.78, 1.9> color rgb <0.008, 0.008, 0.008>}
+    #end
+  }
+
+object {
+  lampada
+  rotate y*90
+  translate <4, 0, 3>
+}
+object {
+  lampada
+  rotate y*90
+  translate <8, 0, 3>
+}
+object {
+  lampada
+  translate <10, 0, -5.7>
+}
+#declare I = 18;
+#while (I < 38)
+  #declare J = -5.7;
+  #while (J <= 1.3)
+    object {
+      lampada
+      translate <I, 0, J>
+    }
+    #declare J = J + 3.5;
+  #end
+  #declare I = I + 6;
+#end
+object {
+  lampada
+  translate <2.6, 0, -2>
+}
+object {
+  lampada
+  translate <2.2, 0, 0.2>
+}
+object {
+  lampada
+  translate <9.2, 0, 0.2>
+}
 #declare I = 0;
-#while (I <= 60)
-  light_source { <I, 4.2,  18.5> color rgb <0.007, 0.007, 0.007>}
-  #declare I = I + 0.2;
+#while (I <= 35)
+  #declare J = 4.3;
+  #while (J <= 13.4)
+    object {
+      lampada
+      translate <I, 0, J>
+    }
+    #declare J = J + 4.3;
+  #end
+  #declare I = I + 3.5;
 #end
-#declare I = -20;
-#while (I <= 20)
-  light_source { <45.1, 4.2,  I > color rgb <0.004, 0.004, 0.004>}
-  #declare I = I + 0.2;
+#while (I <= 35)
+  #declare J = 4.3;
+  #while (J <= 13.4)
+    object {
+      lampada
+      translate <I, 0, J>
+    }
+    #declare J = J + 4.3;
+  #end
+  #declare I = I + 3.5;
 #end
 
-
+box {
+  <18,   5,    1.3>
+  <18.6, 4.7, 1.4>
+  pigment {
+    color Red
+  }
+}
 
 // Ch�o
 plane {
@@ -51,7 +206,8 @@ plane {
 plane {
   <0, -1, 0>, -1
   pigment {
-    checker color rgb <0.8, 0.8, 0.65>, color rgb <0.9, 0.9, 0.75>
+    checker color rgb <0.87, 0.87, 0.65>, color rgb <0.95, 0.95, 0.72>
+    scale x*3
   }
   translate <0,4,0>
 }
@@ -248,8 +404,10 @@ object {
         0
       )
       texture {
-        pigment{ color Blue}
-        // finish { phong 1}
+        pigment {
+          checker color rgb <0.1, 0.1, 1>, color rgb <0, 0, 0.75>
+          scale .005
+        }
       }
     }
     box {
@@ -288,8 +446,10 @@ object {
       Round_Cylinder
        (<0,0,0>,<0,0.3001,0>,0.5,0.15,0)
       texture{
-        pigment{ color Blue}
-        // finish { phong 1}
+        pigment {
+          checker color rgb <0.1, 0.1, 1>, color rgb <0, 0, 0.75>
+          scale .005
+        }
       }
       scale <0.8, 0.3, 0.8>
       rotate <90, 90, 0>
