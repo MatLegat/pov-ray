@@ -9,7 +9,7 @@
 
 camera {
   location <0, 2.7, -5>
-  look_at  <13, 1.3,  2.5>
+  look_at  <13, 1.3,  2.55>
 }
 
 background { color Black }
@@ -347,6 +347,38 @@ object {
         color Blue
       }
     }
+    #declare I = 0.3;
+    #while (I <= 25)
+      #declare J = 0;
+      #while (J > -5)
+        box {
+          <15.1, 2.9, -4.46>,
+          <19.7, 2.3, -3.54>
+          pigment {
+            color rgb <0.65, 0.65, 0>
+          }
+          translate <I, J, 0>
+        }
+        #declare J = J - 0.7;
+      #end
+      #declare I = I + 5.5;
+    #end
+    #declare I = 0;
+    #while (I >= -0.6)
+      #declare J = 0;
+      #while (J >= -5)
+        box {
+          <14.999, 2.67,-3.8>,
+          <15, 2.6,-3.62>
+          pigment {
+            color rgb <0.1, 0.1, 0>
+          }
+          translate <0, J, I>
+        }
+        #declare J = J - 0.37;
+      #end
+      #declare I = I - 0.2;
+    #end
   }
 object {
   estante
@@ -354,6 +386,74 @@ object {
 object {
   estante
   translate <0, 0, -2>
+}
+
+// Saídas de ar
+#declare saida_ar = 
+  union {
+    box {
+      <8, 6, -4.8>,
+      <6, 4.999, -3.8>
+      pigment {
+        color rgb <0.65, 0.65, 0.35>
+      }
+    }
+    box {
+      <7.8, 6, -4.7>,
+      <6.2, 4.998, -3.9>
+      pigment {
+        color rgb <0.5, 0.5, 0.3>
+      }
+    }
+    box {
+      <7.6, 6, -4.6>,
+      <6.4, 4.997, -4>
+      pigment {
+        color rgb <0.65, 0.65, 0.35>
+      }
+    }
+    box {
+      <7.4, 6, -4.5>,
+      <6.6, 4.996, -4.1>
+      pigment {
+        color rgb <0.5, 0.5, 0.3>
+      }
+    }
+  }
+object {
+  saida_ar
+  scale <0.35, 0, 0.8>
+  translate <4, 0, -1>
+}
+object {
+  saida_ar
+  scale <0.35, 0, 0.8>
+  translate <4, 0, 2>
+}
+object {
+  saida_ar
+  scale <0.35, 0, 0.8>
+  translate <5, 0, 7.5>
+}
+object {
+  saida_ar
+  scale <0.35, 0, 0.8>
+  translate <11, 0, -1>
+}
+object {
+  saida_ar
+  scale <1.6, 0, 0.6>
+  translate <1, 0, 1.5>
+}
+object {
+  saida_ar
+  scale <1.0, 0, 0.6>
+  translate <20, 0, -0.5>
+}
+object {
+  saida_ar
+  scale <0.35, 0, 0.8>
+  translate <12, 0, 7>
 }
 
 // Mesa
